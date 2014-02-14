@@ -112,3 +112,7 @@ filenames, obviously."
     (with-current-buffer (get-buffer-create "*duplicated files*")
       (erase-buffer))
     (dired (cons "*duplicated files*" (reverse different-files)))))
+
+(provide 'dired-duplicates)
+
+;;; dired-duplicates.el ends here
