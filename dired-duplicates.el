@@ -103,10 +103,10 @@ filenames, obviously."
 	       (push file different-files))
 	      ((and (not ts)
 		    (not (string= (with-temp-buffer
-				    (insert-file-literally file)
+				    (insert-file-contents-literally file)
 				    (md5 (current-buffer)))
 				  (with-temp-buffer
-				    (insert-file-literally other)
+				    (insert-file-contents-literally other)
 				    (md5 (current-buffer))))))
 	       (message "%s doesn't have the same content (MD5 hash differs)"
 			file)
