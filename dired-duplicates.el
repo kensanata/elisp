@@ -65,7 +65,9 @@ filenames, obviously."
 	different-files)
     ;; recurse subdirectories for both lists
     (dolist (file files)
-      (when (file-directory-p file)
+      (when (and (file-directory-p file)
+		 (not (string= (file-name-nondirectory file) "."))
+		 (not (string= (file-name-nondirectory file) "..")))
 	(setq files (nconc files (directory-files dir)))))
     (dolist (file candidates)
       (when (and (file-directory-p file)
