@@ -111,9 +111,12 @@ filenames, obviously."
 	       (message "%s doesn't have the same content (MD5 hash differs)"
 			file)
 	       (push file different-files)))))
-    (with-current-buffer (get-buffer-create "*duplicated files*")
-      (erase-buffer))
-    (dired (cons "*duplicated files*" (reverse different-files)))))
+    (let ((buf (get-buffer "*duplicated files*")))
+      (when buf
+	(with-current-buffer buf
+	  (erase-buffer))))
+    (dired (cons (get-buffer-create "*duplicated files*")
+		 (reverse different-files)))))
 
 (provide 'dired-duplicates)
 
