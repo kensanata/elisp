@@ -61,21 +61,12 @@ filenames, obviously."
 		     (read-directory-name "Directory to be checked: ")
 		     (y-or-n-p "Save time and use timestamp instead of MD5 hash? ")
 		     (y-or-n-p "Ignore directory structures? ")))
-  (let ((candidates (directory-files dir))
-	different-files file-alist)
+  (let (candidates different-files file-alist)
     (message "Building list of files...")
-    ;; recurse subdirectories for both lists
-    (dolist (file files)
-      (when (and (file-directory-p file)
-		 (not (string= (file-name-nondirectory file) "."))
-		 (not (string= (file-name-nondirectory file) "..")))
-	(setq files (nconc files (directory-files dir)))))
-    (dolist (file candidates)
-      (when (and (file-directory-p file)
-		 (not (string= (file-name-nondirectory file) "."))
-		 (not (string= (file-name-nondirectory file) "..")))
-	(setq candidates (nconc candidates (directory-files dir)))))
+    (setq files (dired-duplicates/all-the-files files)
+	  candidates (dired-duplicates/all-the-files (list dir)))
     (when nodir
+      (message "Building map for the file names...")
       (setq file-alist (mapcar (lambda (f)
 				 (cons (file-name-nondirectory f)
 				       (expand-file-name f dir)))
@@ -116,11 +107,26 @@ filenames, obviously."
     (let ((buf (get-buffer "*duplicated files*")))
       (when buf
 	(kill-buffer buf)))
-    (message "%S" different-files)
     (if (not different-files)
 	(message "All files are duplicates")
       (dired (cons "*duplicated files*"
 		   (reverse different-files))))))
+
+(defun dired-duplicates/all-the-files (files)
+  "Return all the files and recurse.
+Do not return directories."
+  (let (result)
+    (dolist (file files)
+      (if (file-regular-p file)
+	  (push file result)
+	(when (and (file-directory-p file)
+		   (not (string= (file-name-nondirectory file) "."))
+		   (not (string= (file-name-nondirectory file) "..")))
+	  (message "Descending into %s..." file)
+	  (setq result (nconc result
+			      (dired-duplicates/all-the-files 
+			       (directory-files file t)))))))
+    result))
 
 (provide 'dired-duplicates)
 
