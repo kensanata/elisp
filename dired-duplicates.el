@@ -62,7 +62,8 @@ filenames, obviously."
 		     (y-or-n-p "Save time and use timestamp instead of MD5 hash? ")
 		     (y-or-n-p "Ignore directory structures? ")))
   (let ((candidates (directory-files dir))
-	different-files)
+	different-files file-alist)
+    (message "Building list of files...")
     ;; recurse subdirectories for both lists
     (dolist (file files)
       (when (and (file-directory-p file)
@@ -74,15 +75,16 @@ filenames, obviously."
 		 (not (string= (file-name-nondirectory file) "."))
 		 (not (string= (file-name-nondirectory file) "..")))
 	(setq candidates (nconc candidates (directory-files dir)))))
+    (when nodir
+      (setq file-alist (mapcar (lambda (f)
+				 (cons (file-name-nondirectory f)
+				       (expand-file-name f dir)))
+			       candidates)))
     ;; go through the files
     (dolist (file files)
       (message "Looking at %s..." file)
       (let* ((other (if nodir
-			(cdr (assoc (file-name-nondirectory file)
-				    (mapcar (lambda (f)
-					      (cons (file-name-nondirectory f)
-						    (expand-file-name f dir)))
-					    candidates)))
+			(cdr (assoc (file-name-nondirectory file) file-alist))
 		      (expand-file-name file dir)))
 	     (file-attributes (file-attributes file))
 	     (other-attributes (and other (file-attributes other))))
@@ -113,10 +115,12 @@ filenames, obviously."
 	       (push file different-files)))))
     (let ((buf (get-buffer "*duplicated files*")))
       (when buf
-	(with-current-buffer buf
-	  (erase-buffer))))
-    (dired (cons (get-buffer-create "*duplicated files*")
-		 (reverse different-files)))))
+	(kill-buffer buf)))
+    (message "%S" different-files)
+    (if (not different-files)
+	(message "All files are duplicates")
+      (dired (cons "*duplicated files*"
+		   (reverse different-files))))))
 
 (provide 'dired-duplicates)
 
