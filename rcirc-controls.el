@@ -1,4 +1,4 @@
-;;; rcirc-controls.el -- control sequences
+;;; rcirc-controls.el --- control sequences
 ;; Copyright 2008  Alex Schroeder
 
 ;; This program is free software; you can redistribute it and/or
