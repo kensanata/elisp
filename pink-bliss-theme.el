@@ -1,8 +1,8 @@
 ;;; pink-bliss.el --- a pink color theme for Emacs
 
-;; Copyright (C) 2005, 2008  Alex Schroeder <alex@gnu.org>
+;; Copyright (C) 2005–2015  Alex Schroeder <alex@gnu.org>
 
-;; This file is not part of GNU Emacs. It no longer depends on color-theme.
+;; This file is not part of GNU Emacs.
 
 ;; This is free software; you can redistribute it and/or modify it under
 ;; the terms of the GNU General Public License as published by the Free
@@ -19,8 +19,8 @@
 ;; Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,
 ;; MA 02111-1307, USA.
 
-;; URL: http://www.emacswiki.org/cgi-bin/emacs/PinkBliss
-;; pink-gnu.xpm: http://www.emacswiki.org/cgi-bin/emacs/download/pink-gnu.xpm
+;; URL: http://www.emacswiki.org/emacs/PinkBliss
+;; pink-gnu.xpm: http://www.emacswiki.org/emacs/download/pink-gnu.xpm
 
 ;;; Code:
 
@@ -34,8 +34,8 @@ It is very pink.")
  '(button ((t (:bold t))))
  '(fringe ((t (:background "hot pink"))))
  '(menu ((t (:background "pink" :foreground "violet red"))))
- '(modeline ((t (:background "pink" :foreground "purple"
-		 :box (:line-width 1 :style released-button)))))
+ '(mode-line ((t (:background "pink" :foreground "purple"
+		  :box (:line-width 1 :style released-button)))))
  '(mode-line-inactive ((t (:background "pink" :foreground "orchid"
 			   :box (:line-width 1
 				 :style released-button)))))
@@ -44,7 +44,7 @@ It is very pink.")
 		 :box (:line-width 1 :style released-button)))))
  '(tooltip ((t (:background "lemon chiffon"
 		:foreground "violet red"))))
- '(region ((t (:background "white"))))
+ '(region ((t (:background "seashell"))))
  ;; isearch
  '(isearch ((t (:foreground "pink" :background "red"))))
  '(isearch-lazy-highlight-face ((t (:foreground "red"))))
@@ -73,7 +73,32 @@ It is very pink.")
  '(cperl-hash-face  ((t (:bold t :foreground "chocolate"))))
  '(cperl-nonoverridable-face  ((t (:foreground "red"))))
  ;; makefiles
- '(makefile-shell-face  ((t (:background "linen")))))
+ '(makefile-shell-face  ((t (:background "linen"))))
+ ;; ivy (part of swiper)
+ '(ivy-confirm-face ((t (:foreground "magenta"))))
+ '(ivy-current-match ((t (:background "light pink"))))
+ ;; gnus
+ '(message-header-name ((t (:foreground "red"))))
+ '(message-header-other ((t (:foreground "dark orange"))))
+ ;; magit
+ '(magit-section-highlight ((t (:background "pink"))))
+ '(magit-diff-hunk-heading ((t (:foreground "black" :background "MistyRose2"))))
+ '(magit-diff-hunk-heading-highlight ((t (:foreground "black" :background "MistyRose3"))))
+ '(magit-diff-context ((t (:inherit default))))
+ '(magit-diff-context-highlight ((t (:background "MistyRose2"))))
+ '(magit-diff-removed ((t (:background "RosyBrown2"))))
+ '(magit-diff-added ((t (:background "RosyBrown1"))))
+ '(magit-diff-removed-highlight ((t (:background "pink3"))))
+ '(magit-diff-added-highlight ((t (:background "pink1"))))
+ '(magit-diff-whitespace-warning ((t (:background "violet red"))))
+ '(magit-section-heading ((t (:foreground "firebrick"))))
+ '(magit-section-highlight ((t (:background "#fdc"))))
+ '(magit-diff-file-heading ((t (:foreground "firebrick4"))))
+ '(magit-diff-file-heading-highlight ((t (:background "#fdd"))))
+ '(magit-hash ((t (:inherit bold))))
+ '(magit-branch-local ((t (:foreground "PaleVioletRed2" :weight bold))))
+ '(magit-branch-remote ((t (:foreground "PaleVioletRed3" :weight bold))))
+ )
 
 (custom-theme-set-variables
  'pink-bliss
@@ -81,6 +106,32 @@ It is very pink.")
  '(help-highlight-face 'info-xref)
  '(list-matching-lines-buffer-name-face 'bold)
  '(rcirc-colors pink-bliss-foreground-colors))
+
+(defun pink-bliss-save-or-open ()
+  "Save the current buffer or open a file."
+  (interactive)
+  (if (buffer-modified-p)
+      (save-buffer)
+    (call-interactively 'find-file)))
+
+(defvar pink-bliss-foreground-colors
+  (let ((candidates)
+	;; (red-limit #xe000)
+	(green-limit #xed00)
+	(both-limit #xa000))
+    (dolist (item color-name-rgb-alist)
+      (destructuring-bind (color red green blue) item
+	(when (and (not (color-gray-p color))
+		   ;; (< red red-limit)
+		   (< green green-limit)
+		   (not (and (> red both-limit)
+			     (> green both-limit))))
+	  (setq candidates (cons color candidates)))))
+    candidates)
+  "Colors to use for nicks in rcirc, for example.
+
+To check out the list, evaluate
+\(list-colors-display pink-bliss-foreground-colors).")
 
 (provide-theme 'pink-bliss)
 
