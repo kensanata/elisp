@@ -46,8 +46,8 @@ It is very pink.")
 		:foreground "violet red"))))
  '(region ((t (:background "seashell"))))
  ;; isearch
- '(isearch ((t (:foreground "pink" :background "red"))))
- '(isearch-lazy-highlight-face ((t (:foreground "red"))))
+ '(isearch ((t (:foreground "white" :background "hot pink"))))
+ '(isearch-lazy-highlight-face ((t (:foreground "white" :background "deep pink"))))
  ;; info-mode
  '(header-line ((t (:background "deep pink" :foreground "pink"))))
  ;; calendar
@@ -117,7 +117,7 @@ It is very pink.")
 (defvar pink-bliss-foreground-colors
   (let ((candidates)
 	;; (red-limit #xe000)
-	(green-limit #xed00)
+	(green-limit #xa000)
 	(both-limit #xa000))
     (dolist (item color-name-rgb-alist)
       (destructuring-bind (color red green blue) item
@@ -132,6 +132,8 @@ It is very pink.")
 
 To check out the list, evaluate
 \(list-colors-display pink-bliss-foreground-colors).")
+
+(list-colors-display pink-bliss-foreground-colors)
 
 (provide-theme 'pink-bliss)
 
