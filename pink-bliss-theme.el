@@ -27,77 +27,94 @@
 (deftheme pink-bliss
   "A theme based on the color pink.
 It is very pink.")
-
+ 	
 (custom-theme-set-faces
  'pink-bliss
- '(default ((t ( :background "misty rose" :foreground "magenta4"))))
- '(button ((t (:bold t))))
- '(fringe ((t (:background "hot pink"))))
- '(menu ((t (:background "pink" :foreground "violet red"))))
- '(mode-line ((t (:background "pink" :foreground "purple"
+ '(default ((((min-colors 256)) ( :background "misty rose" :foreground "magenta4"))))
+ '(button ((((min-colors 256)) (:bold t))))
+ '(fringe ((((min-colors 256)) (:background "hot pink"))))
+ '(menu ((((min-colors 256)) (:background "pink" :foreground "violet red"))))
+ '(mode-line ((((min-colors 256)) (:background "pink" :foreground "purple"
 		  :box (:line-width 1 :style released-button)))))
- '(mode-line-inactive ((t (:background "pink" :foreground "orchid"
+ '(mode-line-inactive ((((min-colors 256)) (:background "pink" :foreground "orchid"
 			   :box (:line-width 1
 				 :style released-button)))))
- '(minibuffer-prompt ((t (:foreground "deep pink"))))
- '(tool-bar ((t (:background "pink"
+ '(minibuffer-prompt ((((min-colors 256)) (:foreground "deep pink"))))
+ '(tool-bar ((((min-colors 256)) (:background "pink"
 		 :box (:line-width 1 :style released-button)))))
- '(tooltip ((t (:background "lemon chiffon"
+ '(tooltip ((((min-colors 256)) (:background "lemon chiffon"
 		:foreground "violet red"))))
- '(region ((t (:background "seashell"))))
+ '(region ((((min-colors 256)) (:background "seashell"))))
  ;; isearch
- '(isearch ((t (:foreground "white" :background "hot pink"))))
- '(isearch-lazy-highlight-face ((t (:foreground "white" :background "deep pink"))))
+ '(isearch ((((min-colors 256)) (:foreground "white" :background "hot pink"))))
+ '(isearch-lazy-highlight-face ((((min-colors 256)) (:foreground "white" :background "deep pink"))))
  ;; info-mode
- '(header-line ((t (:background "deep pink" :foreground "pink"))))
+ '(header-line ((((min-colors 256)) (:background "deep pink" :foreground "pink"))))
  ;; calendar
- '(calendar-today-face ((t (:foreground "lemon chiffon"))))
- '(diary-face ((t (:bold t :foreground "yellow"))))
- '(holiday-face ((t (:bold t :foreground "peru"))))
+ '(calendar-today-face ((((min-colors 256)) (:foreground "lemon chiffon"))))
+ '(diary-face ((((min-colors 256)) (:bold t :foreground "yellow"))))
+ '(holiday-face ((((min-colors 256)) (:bold t :foreground "peru"))))
  ;; font-lock
- '(font-lock-builtin-face ((t (:foreground "orchid"))))
- '(font-lock-comment-delimiter-face ((t (:foreground "coral"))))
- '(font-lock-comment-face ((t (:foreground "salmon"))))
- '(font-lock-constant-face ((t (:foreground "orchid"))))
- '(font-lock-doc-face ((t (:foreground "coral"))))
- '(font-lock-function-name-face ((t (:foreground "deep pink"))))
- '(font-lock-keyword-face ((t (:foreground "purple"))))
- '(font-lock-negation-char-face ((t (:foreground "red"))))
- '(font-lock-preprocessor-face ((t (:foreground "pink"))))
- '(font-lock-string-face ((t (:foreground "pale violet red"))))
- '(font-lock-type-face ((t (:foreground "light slate blue"))))
- '(font-lock-variable-name-face ((t (:foreground "hot pink"))))
- '(font-lock-warning-face ((t (:bold t :foreground "red"))))
+ '(font-lock-builtin-face ((((min-colors 256)) (:foreground "orchid"))))
+ '(font-lock-comment-delimiter-face ((((min-colors 256)) (:foreground "coral"))))
+ '(font-lock-comment-face ((((min-colors 256)) (:foreground "salmon"))))
+ '(font-lock-constant-face ((((min-colors 256)) (:foreground "orchid"))))
+ '(font-lock-doc-face ((((min-colors 256)) (:foreground "coral"))))
+ '(font-lock-function-name-face ((((min-colors 256)) (:foreground "deep pink"))))
+ '(font-lock-keyword-face ((((min-colors 256)) (:foreground "purple"))))
+ '(font-lock-negation-char-face ((((min-colors 256)) (:foreground "red"))))
+ '(font-lock-preprocessor-face ((((min-colors 256)) (:foreground "pink"))))
+ '(font-lock-string-face ((((min-colors 256)) (:foreground "pale violet red"))))
+ '(font-lock-type-face ((((min-colors 256)) (:foreground "light slate blue"))))
+ '(font-lock-variable-name-face ((((min-colors 256)) (:foreground "hot pink"))))
+ '(font-lock-warning-face ((((min-colors 256)) (:bold t :foreground "red"))))
  ;; cperl
- '(cperl-array-face ((t (:bold t :foreground "tomato"))))
- '(cperl-hash-face  ((t (:bold t :foreground "chocolate"))))
- '(cperl-nonoverridable-face  ((t (:foreground "red"))))
+ '(cperl-array-face ((((min-colors 256)) (:bold t :foreground "tomato"))))
+ '(cperl-hash-face  ((((min-colors 256)) (:bold t :foreground "chocolate"))))
+ '(cperl-nonoverridable-face  ((((min-colors 256)) (:foreground "red"))))
  ;; makefiles
- '(makefile-shell-face  ((t (:background "linen"))))
+ '(makefile-shell-face  ((((min-colors 256)) (:background "linen"))))
  ;; ivy (part of swiper)
- '(ivy-confirm-face ((t (:foreground "magenta"))))
- '(ivy-current-match ((t (:background "light pink"))))
+ '(ivy-confirm-face ((((min-colors 256)) (:foreground "magenta"))))
+ '(ivy-current-match ((((min-colors 256)) (:background "light pink"))))
  ;; gnus
- '(message-header-name ((t (:foreground "red"))))
- '(message-header-other ((t (:foreground "dark orange"))))
+ '(message-header-name ((((min-colors 256)) (:foreground "red"))))
+ '(message-header-other ((((min-colors 256)) (:foreground "dark orange"))))
+ ;; ediff
+ '(ediff-current-diff-A ((((min-colors 256)) (:background "papaya whip"))))
+ '(ediff-current-diff-Ancestor ((((min-colors 256)) (:background "papaya whip"))))
+ '(ediff-current-diff-B ((((min-colors 256)) (:background "papaya whip"))))
+ '(ediff-current-diff-C ((((min-colors 256)) (:background "papaya whip"))))
+ '(ediff-even-diff-A ((((min-colors 256)) (:background "seashell"))))
+ '(ediff-even-diff-Ancestor ((((min-colors 256)) (:background "seashell"))))
+ '(ediff-even-diff-B ((((min-colors 256)) (:background "seashell"))))
+ '(ediff-even-diff-C ((((min-colors 256)) (:background "seashell"))))
+ '(ediff-fine-diff-A ((((min-colors 256)) (:background "moccasin"))))
+ '(ediff-fine-diff-Ancestor ((((min-colors 256)) (:background "moccasin"))))
+ '(ediff-fine-diff-B ((((min-colors 256)) (:background "moccasin"))))
+ '(ediff-fine-diff-C ((((min-colors 256)) (:background "moccasin"))))
+ '(ediff-odd-diff-A ((((min-colors 256)) (:background "seashell"))))
+ '(ediff-odd-diff-Ancestor ((((min-colors 256)) (:background "seashell"))))
+ '(ediff-odd-diff-B ((((min-colors 256)) (:background "seashell"))))
+ '(ediff-odd-diff-C ((((min-colors 256)) (:background "seashell"))))
  ;; magit
- '(magit-section-highlight ((t (:background "pink"))))
- '(magit-diff-hunk-heading ((t (:foreground "black" :background "MistyRose2"))))
- '(magit-diff-hunk-heading-highlight ((t (:foreground "black" :background "MistyRose3"))))
- '(magit-diff-context ((t (:inherit default))))
- '(magit-diff-context-highlight ((t (:background "MistyRose2"))))
- '(magit-diff-removed ((t (:background "RosyBrown2"))))
- '(magit-diff-added ((t (:background "RosyBrown1"))))
- '(magit-diff-removed-highlight ((t (:background "pink3"))))
- '(magit-diff-added-highlight ((t (:background "pink1"))))
- '(magit-diff-whitespace-warning ((t (:background "violet red"))))
- '(magit-section-heading ((t (:foreground "firebrick"))))
- '(magit-section-highlight ((t (:background "#fdc"))))
- '(magit-diff-file-heading ((t (:foreground "firebrick4"))))
- '(magit-diff-file-heading-highlight ((t (:background "#fdd"))))
- '(magit-hash ((t (:inherit bold))))
- '(magit-branch-local ((t (:foreground "PaleVioletRed2" :weight bold))))
- '(magit-branch-remote ((t (:foreground "PaleVioletRed3" :weight bold))))
+ '(magit-section-highlight ((((min-colors 256)) (:background "pink"))))
+ '(magit-diff-hunk-heading ((((min-colors 256)) (:foreground "black" :background "MistyRose2"))))
+ '(magit-diff-hunk-heading-highlight ((((min-colors 256)) (:foreground "black" :background "MistyRose3"))))
+ '(magit-diff-context ((((min-colors 256)) (:inherit default))))
+ '(magit-diff-context-highlight ((((min-colors 256)) (:background "MistyRose2"))))
+ '(magit-diff-removed ((((min-colors 256)) (:background "RosyBrown2"))))
+ '(magit-diff-added ((((min-colors 256)) (:background "RosyBrown1"))))
+ '(magit-diff-removed-highlight ((((min-colors 256)) (:background "pink3"))))
+ '(magit-diff-added-highlight ((((min-colors 256)) (:background "pink1"))))
+ '(magit-diff-whitespace-warning ((((min-colors 256)) (:background "violet red"))))
+ '(magit-section-heading ((((min-colors 256)) (:foreground "firebrick"))))
+ '(magit-section-highlight ((((min-colors 256)) (:background "#fdc"))))
+ '(magit-diff-file-heading ((((min-colors 256)) (:foreground "firebrick4"))))
+ '(magit-diff-file-heading-highlight ((((min-colors 256)) (:background "#fdd"))))
+ '(magit-hash ((((min-colors 256)) (:inherit bold))))
+ '(magit-branch-local ((((min-colors 256)) (:foreground "PaleVioletRed2" :weight bold))))
+ '(magit-branch-remote ((((min-colors 256)) (:foreground "PaleVioletRed3" :weight bold))))
  )
 
 (custom-theme-set-variables
@@ -132,8 +149,6 @@ It is very pink.")
 
 To check out the list, evaluate
 \(list-colors-display pink-bliss-foreground-colors).")
-
-(list-colors-display pink-bliss-foreground-colors)
 
 (provide-theme 'pink-bliss)
 
